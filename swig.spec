@@ -1,7 +1,7 @@
 Summary:        Simplified Wrapper and Interface Generator (SWIG)
 Name:           swig
 Version:        1.3.31
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          1
 License:        BSD-like
 Group:          Development/Other
@@ -20,6 +20,7 @@ BuildRequires:  php-devel
 BuildRequires:  python-devel
 BuildRequires:  ruby-devel
 BuildRequires:  tcl
+BuildRequires:	java-gcj
 %if %mdkversion >= 200610
 BuildRequires:  tcl-devel
 %endif
@@ -63,20 +64,22 @@ documentation.
 %setup -q
 %patch0 -p1 -b .pylib
 WANT_AUTOCONF_2_5=1
-%{__rm} -f configure
-%{__libtoolize} --copy --force
-%{__mkdir_p} Tools/config
-%{_bindir}/aclocal-1.7 -I Tools/config; %{_bindir}/autoheader; %{_bindir}/automake-1.7 --add-missing --copy --force-missing; %{_bindir}/autoconf
+rm -f configure
+libtoolize --copy --force
+mkdir -p Tools/config
+aclocal-1.7 -I Tools/config
+autoheader
+automake-1.7 --add-missing --copy --force-missing
+autoconf
 
 %build
-%{configure2_5x}
-%{make}
+%configure2_5x
+%make
 
 %install
-%{__rm} -rf %{buildroot}
-%{makeinstall_std} install-lib install-main M4_INSTALL_DIR=%{buildroot}%{_datadir}/aclocal
-%{__mkdir_p} %{buildroot}%{_includedir}
-%{__cp} -a ./Source/DOH/doh.h %{buildroot}%{_includedir}/doh.h
+rm -rf %{buildroot}
+%makeinstall_std install-lib install-main M4_INSTALL_DIR=%{buildroot}%{_datadir}/aclocal
+install -m644 ./Source/DOH/doh.h -D %{buildroot}%{_includedir}/doh.h
 
 # TODO: interpreters need to be fixed, etc.
 %{_bindir}/find Examples -type f | %{_bindir}/xargs %{__perl} -pi -e 's/\r$//g'
