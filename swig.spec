@@ -1,7 +1,9 @@
+%define _provides_exceptions perl(Test::More)\\perl(Test::Builder)
+
 Summary:        Simplified Wrapper and Interface Generator (SWIG)
 Name:           swig
 Version:        1.3.31
-Release:        %mkrel 2
+Release:        %mkrel 3
 Epoch:          1
 License:        BSD-like
 Group:          Development/Other
@@ -105,5 +107,3 @@ install -m644 ./Source/DOH/doh.h -D %{buildroot}%{_includedir}/doh.h
 %defattr(0644,root,root,0755)
 %doc LICENSE Doc/Devel
 %{_includedir}/doh.h
-
-
