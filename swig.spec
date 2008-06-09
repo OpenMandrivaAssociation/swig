@@ -86,9 +86,13 @@ install -m644 ./Source/DOH/doh.h -D %{buildroot}%{_includedir}/doh.h
 # TODO: interpreters need to be fixed, etc.
 %{_bindir}/find Examples -type f | %{_bindir}/xargs %{__perl} -pi -e 's/\r$//g'
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
