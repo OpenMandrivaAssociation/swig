@@ -1,34 +1,48 @@
 %define _provides_exceptions perl(Test::More)\\perl(Test::Builder)
 
-Summary:        Simplified Wrapper and Interface Generator (SWIG)
-Name:           swig
-Version:        1.3.35
-Release:        %mkrel 1
-Epoch:          1
-License:        BSD-like
-Group:          Development/Other
-URL:            http://www.swig.org/
-Source0:        http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:         swig-1.3.23-pylib.patch
-BuildRequires:  bison
-BuildRequires:  guile-devel
-BuildRequires:  liblua-devel
-#BuildRequires: libmono-devel
-BuildRequires:  libstdc++-devel
-#BuildRequires: mono
-BuildRequires:  perl-devel
-BuildRequires:  php
-BuildRequires:  php-devel
-BuildRequires:  python-devel
-BuildRequires:  ruby-devel
-BuildRequires:  tcl
-BuildRequires:	java-gcj
-%if %mdkversion >= 200610
-BuildRequires:  tcl-devel
+%define with_guile 0
+%{?_with_ruby: %{expand: %%global with_ruby 1}}
+
+%define with_ocaml 0
+%{?_with_ruby: %{expand: %%global with_ruby 1}}
+
+%define with_mono 0
+%{?_with_ruby: %{expand: %%global with_ruby 1}}
+
+Name: swig
+Version: 1.3.35
+Release: %mkrel 2
+Epoch: 1
+Summary: Simplified Wrapper and Interface Generator (SWIG)
+License: BSD-like
+Group: Development/Other
+URL: http://www.swig.org/
+Source0: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0: swig-1.3.23-pylib.patch
+BuildRequires: bison
+BuildRequires: imake
+%if %{with_guile}
+BuildRequires: guile-devel
 %endif
-BuildRequires:  automake1.7
-BuildRequires:  autoconf2.5
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+%if %{with_ocaml}
+BuildRequires: ocaml
+%endif
+BuildRequires: liblua-devel
+%if %{with_mono}
+BuildRequires: mono
+BuildRequires: mono-devel
+%endif
+BuildRequires: libstdc++-devel
+BuildRequires: boost-devel
+BuildRequires: perl-devel
+BuildRequires: php-devel
+BuildRequires: python-devel
+BuildRequires: ruby-devel
+BuildRequires: tcl-devel
+BuildRequires: automake1.7
+BuildRequires: autoconf2.5
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Obsoletes: swig-devel
 
 %description
 SWIG takes an interface description file written in a combination of C/C++
@@ -65,26 +79,20 @@ documentation.
 %prep
 %setup -q
 %patch0 -p1 -b .pylib
-WANT_AUTOCONF_2_5=1
-rm -f configure
-libtoolize --copy --force
-mkdir -p Tools/config
-aclocal-1.7 -I Tools/config
-autoheader
-automake-1.7 --add-missing --copy --force-missing
-autoconf
 
 %build
+./autogen.sh
+
 %configure2_5x
 %make
 
 %install
-rm -rf %{buildroot}
-%makeinstall_std install-lib install-main M4_INSTALL_DIR=%{buildroot}%{_datadir}/aclocal
-install -m644 ./Source/DOH/doh.h -D %{buildroot}%{_includedir}/doh.h
+rm -rf %buildroot
+%makeinstall_std 
 
-# TODO: interpreters need to be fixed, etc.
-%{_bindir}/find Examples -type f | %{_bindir}/xargs %{__perl} -pi -e 's/\r$//g'
+mkdir -p %buildroot/%_docdir/swig %buildroot/%_libdir/swig
+cp -a ANNOUNCE INSTALL CHANGES CHANGES.current \
+	FUTURE LICENSE NEW README TODO  Doc/Devel Doc/Manual %buildroot/%_docdir/swig
 
 %if %mdkversion < 200900
 %post -p /sbin/ldconfig
@@ -106,8 +114,3 @@ install -m644 ./Source/DOH/doh.h -D %{buildroot}%{_includedir}/doh.h
 %files doc
 %defattr(-,root,root,755)
 %doc Examples Doc/Manual
-
-%files devel
-%defattr(0644,root,root,0755)
-%doc LICENSE Doc/Devel
-%{_includedir}/doh.h
