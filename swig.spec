@@ -49,18 +49,6 @@ SWIG takes an interface description file written in a combination of C/C++
 and special directives and produces interfaces to Perl, Python, and Tcl.
 It allows scripting languages to use C/C++ code with minimal effort.
 
-%package        devel
-Summary:        Header files and libraries for developing apps which will use %{name}
-Group:          Development/C
-Requires:       %{name} = %{epoch}:%{version}-%{release}
-
-%description    devel
-SWIG takes an interface description file written in a combination of C/C++
-and special directives and produces interfaces to Perl, Python, and Tcl.
-It allows scripting languages to use C/C++ code with minimal effort.
-
-Install the %{name}-devel package if you want to develop applications that
-will use the %{name} library.
 
 %package        doc
 Summary:        Documentation and examples for %{name}
