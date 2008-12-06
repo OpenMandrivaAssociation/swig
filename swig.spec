@@ -27,7 +27,7 @@ BuildRequires: guile-devel
 %if %{with_ocaml}
 BuildRequires: ocaml
 %endif
-BuildRequires: liblua-devel
+BuildRequires: lua-devel
 %if %{with_mono}
 BuildRequires: mono
 BuildRequires: mono-devel
