@@ -10,7 +10,7 @@
 %{?_with_ruby: %{expand: %%global with_ruby 1}}
 
 Name: swig
-Version: 1.3.39
+Version: 1.3.40
 Release: %mkrel 1
 Epoch: 1
 Summary: Simplified Wrapper and Interface Generator (SWIG)
