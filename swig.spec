@@ -39,7 +39,7 @@ BuildRequires: php-devel
 BuildRequires: python-devel
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
-BuildRequires: automake1.7
+BuildRequires: automake
 BuildRequires: autoconf2.5
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: swig-devel
