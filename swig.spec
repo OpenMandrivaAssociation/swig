@@ -11,7 +11,7 @@
 
 Name: swig
 Version: 1.3.40
-Release: %mkrel 3
+Release: %mkrel 4
 Epoch: 1
 Summary: Simplified Wrapper and Interface Generator (SWIG)
 License: BSD-like
