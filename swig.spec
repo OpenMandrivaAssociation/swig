@@ -10,8 +10,8 @@
 %{?_with_ruby: %{expand: %%global with_ruby 1}}
 
 Name: swig
-Version: 1.3.40
-Release: %mkrel 4
+Version: 2.0.3
+Release: %mkrel 1
 Epoch: 1
 Summary: Simplified Wrapper and Interface Generator (SWIG)
 License: BSD-like
@@ -19,6 +19,8 @@ Group: Development/Other
 URL: http://www.swig.org/
 Source0: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0: swig-1.3.23-pylib.patch
+Patch2: swig200-rh623854.patch
+Patch3: swig200-rh666429.patch
 BuildRequires: bison
 BuildRequires: imake
 %if %{with_guile}
@@ -32,6 +34,7 @@ BuildRequires: lua-devel
 BuildRequires: mono
 BuildRequires: mono-devel
 %endif
+BuildRequires: pcre-devel
 BuildRequires: libstdc++-devel
 BuildRequires: boost-devel
 BuildRequires: perl-devel
@@ -67,6 +70,8 @@ documentation.
 %prep
 %setup -q
 %patch0 -p1 -b .pylib
+%patch2 -p1 -b .rh623854
+%patch3 -p1 -b .rh666429
 
 %build
 ./autogen.sh
@@ -76,10 +81,6 @@ documentation.
 %install
 rm -rf %buildroot
 %makeinstall_std 
-
-mkdir -p %buildroot/%_docdir/swig %buildroot/%_libdir/swig
-cp -a ANNOUNCE INSTALL CHANGES CHANGES.current \
-	FUTURE LICENSE NEW README TODO  Doc/Devel Doc/Manual %buildroot/%_docdir/swig
 
 %if %mdkversion < 200900
 %post -p /sbin/ldconfig
@@ -94,7 +95,7 @@ cp -a ANNOUNCE INSTALL CHANGES CHANGES.current \
 
 %files
 %defattr(-,root,root)
-%doc ANNOUNCE INSTALL CHANGES CHANGES.current FUTURE LICENSE NEW README TODO
+%doc ANNOUNCE INSTALL CHANGES CHANGES.current LICENSE README TODO
 %{_bindir}/swig
 %{_bindir}/ccache-swig
 %{_datadir}/swig
