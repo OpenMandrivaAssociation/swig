@@ -10,7 +10,7 @@
 %{?_with_ruby: %{expand: %%global with_ruby 1}}
 
 Name: swig
-Version: 2.0.3
+Version: 2.0.4
 Release: %mkrel 1
 Epoch: 1
 Summary: Simplified Wrapper and Interface Generator (SWIG)
@@ -19,8 +19,6 @@ Group: Development/Other
 URL: http://www.swig.org/
 Source0: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0: swig-1.3.23-pylib.patch
-Patch2: swig200-rh623854.patch
-Patch3: swig200-rh666429.patch
 BuildRequires: bison
 BuildRequires: imake
 %if %{with_guile}
@@ -70,8 +68,6 @@ documentation.
 %prep
 %setup -q
 %patch0 -p1 -b .pylib
-%patch2 -p1 -b .rh623854
-%patch3 -p1 -b .rh666429
 
 %build
 ./autogen.sh
