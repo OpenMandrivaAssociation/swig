@@ -11,7 +11,7 @@
 
 Name:		swig
 Version:	2.0.4
-Release:	%mkrel 2
+Release:	3
 Epoch:		1
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 License:	BSD-like
@@ -40,8 +40,7 @@ BuildRequires:	php-devel
 BuildRequires:	python-devel
 BuildRequires:	ruby-devel
 BuildRequires:	tcl-devel
-BuildRequires:	automake
-BuildRequires:	autoconf2.5
+BuildRequires:	autoconf automake libtool
 Obsoletes:	swig-devel
 
 %description
@@ -76,11 +75,7 @@ documentation.
 %__rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-%__rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc ANNOUNCE INSTALL CHANGES CHANGES.current LICENSE README TODO
 %{_bindir}/swig
 %{_bindir}/ccache-swig
@@ -88,5 +83,4 @@ documentation.
 %{_mandir}/man1/*1*
 
 %files doc
-%defattr(-,root,root)
 %doc Examples Doc/Manual
