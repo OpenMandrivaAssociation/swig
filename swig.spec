@@ -1,5 +1,3 @@
-%define _provides_exceptions perl(Test::\\(More\\|Builder\\))
-
 %define with_guile 0
 %{?_with_ruby: %{expand: %%global with_ruby 1}}
 
@@ -10,8 +8,8 @@
 %{?_with_mono: %{expand: %%global with_mono 1}}
 
 Name:		swig
-Version:	2.0.4
-Release:	4
+Version:	2.0.8
+Release:	1
 Epoch:		1
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 License:	BSD-like
@@ -40,8 +38,7 @@ BuildRequires:	php-devel
 BuildRequires:	python-devel
 BuildRequires:	ruby-devel
 BuildRequires:	tcl-devel
-BuildRequires:	autoconf automake libtool
-Obsoletes:	swig-devel
+Obsoletes:	swig-devel < %{EVRD}
 
 %description
 SWIG takes an interface description file written in a combination of C/C++
@@ -52,7 +49,7 @@ It allows scripting languages to use C/C++ code with minimal effort.
 %package	doc
 Summary:	Documentation and examples for %{name}
 Group:		Development/C
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 
 %description	doc
 SWIG takes an interface description file written in a combination of C/C++
@@ -64,15 +61,13 @@ documentation.
 
 %prep
 %setup -q
-%patch0 -p1 -b .pylib
+#patch0 -p1 -b .pylib
 
 %build
-./autogen.sh
 %configure2_5x
 %make
 
 %install
-%__rm -rf %{buildroot}
 %makeinstall_std
 
 %files
