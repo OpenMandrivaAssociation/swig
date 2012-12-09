@@ -1,0 +1,31 @@
+--- swig-2.0.7/configure.in.pylib	2012-05-23 19:10:44.000000000 +0000
++++ swig-2.0.7/configure.in	2012-05-31 23:21:24.000000000 +0000
+@@ -664,11 +664,13 @@
+     fi
+     AC_MSG_RESULT($PYLIBDIR)
+     
++    PYLIB=`$PYTHON -c "import sys; print sys.path[[1]]"`
++
+     # Set the include directory
+ 
+     AC_MSG_CHECKING(for Python header files)
+     if test -r $PYPREFIX/include/$PYVERSION/Python.h; then
+-      PYINCLUDE="-I$PYPREFIX/include/$PYVERSION -I$PYEPREFIX/$PYLIBDIR/$PYVERSION/config"
++      PYINCLUDE="-I$PYPREFIX/include/$PYVERSION -I$PYLIB/config"
+     fi
+     if test -z "$PYINCLUDE"; then
+       if test -r $PYPREFIX/include/Py/Python.h; then
+@@ -679,13 +681,6 @@
+ 
+     # Set the library directory blindly.   This probably won't work with older versions
+     AC_MSG_CHECKING(for Python library)
+-    dirs="$PYVERSION/config $PYVERSION/$PYLIBDIR python/$PYLIBDIR"
+-    for i in $dirs; do
+-      if test -d $PYEPREFIX/$PYLIBDIR/$i; then
+-        PYLIB="$PYEPREFIX/$PYLIBDIR/$i"
+-        break
+-      fi
+-    done
+     if test -z "$PYLIB"; then
+       AC_MSG_RESULT(Not found)
+     else
