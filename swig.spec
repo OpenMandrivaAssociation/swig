@@ -1,5 +1,3 @@
-%define _provides_exceptions perl(Test::\\(More\\|Builder\\))
-
 %define with_guile 0
 %{?_with_ruby: %{expand: %%global with_ruby 1}}
 
@@ -11,7 +9,7 @@
 
 Name:		swig
 Version:	2.0.8
-Release:	1
+Release:	2
 Epoch:		1
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 License:	BSD-like
