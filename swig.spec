@@ -1,34 +1,27 @@
-%define with_guile 0
-%{?_with_ruby: %{expand: %%global with_ruby 1}}
-
-%define with_ocaml 0
-%{?_with_ocaml: %{expand: %%global with_ocaml 1}}
-
-%define with_mono 0
-%{?_with_mono: %{expand: %%global with_mono 1}}
+%bcond_with	guile
+%bcond_with	ocaml
+%bcond_with	mono
 
 Name:		swig
-Version:	2.0.8
-Release:	2
+Version:	2.0.10
+Release:	1
 Epoch:		1
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 License:	BSD-like
 Group:		Development/Other
 URL:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		swig-2.0.7-pylib.patch
-Patch1:		swig203-rh706140.patch
-Patch2:		swig204-rh752054.patch
+Patch0:		swig-2.0.10-pylib.patch
 BuildRequires:	bison
 BuildRequires:	imake
-%if %{with_guile}
+%if %{with guile}
 BuildRequires:	guile-devel
 %endif
-%if %{with_ocaml}
+%if %{with ocaml}
 BuildRequires:	ocaml
 %endif
 BuildRequires:	lua-devel
-%if %{with_mono}
+%if %{with mono}
 BuildRequires:	mono
 BuildRequires:	mono-devel
 %endif
@@ -65,8 +58,6 @@ documentation.
 %prep
 %setup -q
 %patch0 -p1 -b .pylib
-%patch1 -p1
-%patch2 -p1
 
 %build
 ./autogen.sh
