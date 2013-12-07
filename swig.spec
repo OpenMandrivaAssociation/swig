@@ -4,7 +4,7 @@
 
 Name:		swig
 Version:	2.0.10
-Release:	1
+Release:	2
 Epoch:		1
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 License:	BSD-like
