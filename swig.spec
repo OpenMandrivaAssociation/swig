@@ -11,6 +11,7 @@ License:	BSD
 Group:		Development/Other
 Url:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source1000:	%{name}.rpmlintrc
 Patch0:		swig-3.0.0-pylib.patch
 BuildRequires:	bison
 BuildRequires:	imake
@@ -71,11 +72,11 @@ documentation.
 
 %prep
 %setup -q
-%patch0 -p1 -b .pylib
+%patch0 -p1 -b .pylib~
 
 %build
 ./autogen.sh
-%configure2_5x
+%configure2_5x --with-python3=%{_bindir}/python
 %make
 
 %install

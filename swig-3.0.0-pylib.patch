@@ -1,11 +1,46 @@
-diff -up ./configure.ac.pylib ./configure.ac
---- ./configure.ac.pylib	2014-03-16 23:49:54.000000000 +0200
-+++ ./configure.ac	2014-03-22 19:20:04.519686519 +0200
-@@ -642,11 +642,13 @@ else
+--- swig-3.0.2/configure.ac.pylib	2014-06-19 13:52:11.250684491 +0200
++++ swig-3.0.2/configure.ac	2014-06-19 13:55:53.160685205 +0200
+@@ -608,17 +608,17 @@ if test x"${PYBIN}" = xno -o x"${with_al
+ else
+   # First figure out the name of the Python executable
+   if test "x$PYBIN" = xyes; then
+-    AC_CHECK_PROGS(PYTHON, [python python2.8 python2.7 python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 python1.4])
++    AC_CHECK_PROGS(PYTHON, [python python2.8 python2.7 python2 python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 python1.4])
+   else
+     PYTHON="$PYBIN"
+   fi
+ 
+   if test -n "$PYTHON"; then
+     AC_MSG_CHECKING(for Python prefix)
+-    PYPREFIX=`($PYTHON -c "import sys; print sys.prefix") 2>/dev/null`
++    PYPREFIX=`($PYTHON -c "import sys; print(sys.prefix)") 2>/dev/null`
+     AC_MSG_RESULT($PYPREFIX)
+     AC_MSG_CHECKING(for Python exec-prefix)
+-    PYEPREFIX=`($PYTHON -c "import sys; print sys.exec_prefix") 2>/dev/null`
++    PYEPREFIX=`($PYTHON -c "import sys; print(sys.exec_prefix)") 2>/dev/null`
+     AC_MSG_RESULT($PYEPREFIX)
+ 
+ 
+@@ -629,24 +629,26 @@ else
+ 
+     # Need to do this hack since autoconf replaces __file__ with the name of the configure file
+     filehack="file__"
+-    PYVERSION=`($PYTHON -c "import string,operator,os.path; print operator.getitem(os.path.split(operator.getitem(os.path.split(string.__$filehack),0)),1)")`
++    PYVERSION=`($PYTHON -c "import string,operator,os.path; print(operator.getitem(os.path.split(operator.getitem(os.path.split(string.__$filehack),0)),1))")`
+     AC_MSG_RESULT($PYVERSION)
+ 
+     # Find the directory for libraries this is necessary to deal with
+     # platforms that can have apps built for multiple archs: e.g. x86_64
+     AC_MSG_CHECKING(for Python lib dir)
+-    PYLIBDIR=`($PYTHON -c "import sys; print sys.lib") 2>/dev/null`
++    PYLIBDIR=`($PYTHON -c "import sys; print(sys.lib)") 2>/dev/null`
+     if test -z "$PYLIBDIR"; then
+       # Fedora patch Python to add sys.lib, for other distros we assume "lib".
+       PYLIBDIR="lib"
      fi
      AC_MSG_RESULT($PYLIBDIR)
  
-+    PYLIB=`$PYTHON -c "import sys; print sys.path[[1]]"`
++    PYLIB=`$PYTHON -c "import sys; print(sys.path[[1]])"`
 +
      # Set the include directory
  
