@@ -1,6 +1,7 @@
 %bcond_with guile
 %bcond_with mono
 %bcond_with ocaml
+%bcond_with php
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
@@ -27,7 +28,9 @@ BuildRequires:	boost-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	lua-devel
 BuildRequires:	perl-devel
+%if %{with php}
 BuildRequires:	php-devel
+%endif
 BuildRequires:	ruby-devel
 BuildRequires:	tcl-devel
 %if %{with guile}
