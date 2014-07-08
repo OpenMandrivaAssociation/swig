@@ -26,7 +26,6 @@ BuildRequires:	ocaml
 %endif
 BuildRequires:	boost-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	lua-devel
 BuildRequires:	perl-devel
 %if %{with php}
 BuildRequires:	php-devel
