@@ -2,6 +2,7 @@
 %bcond_with mono
 %bcond_with ocaml
 %bcond_with php
+%bcond_with ruby
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
@@ -30,7 +31,9 @@ BuildRequires:	perl-devel
 %if %{with php}
 BuildRequires:	php-devel
 %endif
+%if %{with ruby}
 BuildRequires:	ruby-devel
+%endif
 BuildRequires:	tcl-devel
 %if %{with guile}
 BuildRequires:	pkgconfig(guile-2.0)
@@ -78,7 +81,7 @@ documentation.
 
 %build
 ./autogen.sh
-%configure2_5x --with-python3=%{_bindir}/python
+%configure --with-python3=%{_bindir}/python
 %make
 
 %install
