@@ -1,12 +1,12 @@
 %bcond_with guile
 %bcond_with mono
-%bcond_with ocaml
-%bcond_with php
-%bcond_with ruby
+%bcond_without ocaml
+%bcond_without php
+%bcond_without ruby
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
-Version:	3.0.6
+Version:	3.0.10
 Release:	1
 Epoch:		1
 License:	BSD
@@ -53,7 +53,6 @@ It allows scripting languages to use C/C++ code with minimal effort.
 %{_bindir}/swig
 %{_bindir}/ccache-swig
 %{_datadir}/swig
-%{_mandir}/man1/*1*
 
 #----------------------------------------------------------------------------
 
