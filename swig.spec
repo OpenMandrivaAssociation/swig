@@ -10,7 +10,7 @@
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
 Version:	4.0.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	BSD
 Group:		Development/Other
@@ -18,6 +18,7 @@ Url:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
 Patch0:		swig-3.0.0-pylib.patch
+Patch1:		swig-4.0.1-ruby-2.7.0.patch
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
@@ -88,8 +89,7 @@ documentation.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%patch0 -p1 -b .pylib~
+%autosetup -p1
 
 %build
 ./autogen.sh
@@ -126,5 +126,5 @@ documentation.
 %make
 
 %install
-%makeinstall_std
+%make_install
 
