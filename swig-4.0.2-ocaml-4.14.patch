@@ -1,0 +1,12 @@
+diff -up swig-4.0.2/Lib/ocaml/ocamlrun.swg.omv~ swig-4.0.2/Lib/ocaml/ocamlrun.swg
+--- swig-4.0.2/Lib/ocaml/ocamlrun.swg.omv~	2022-09-11 22:04:15.989637219 +0200
++++ swig-4.0.2/Lib/ocaml/ocamlrun.swg	2022-09-11 22:05:07.229977040 +0200
+@@ -369,7 +369,7 @@ extern "C" {
+ 	if( !p || len < 0 ) CAMLreturn(caml_val_ptr( (void *)p, 0 ));
+ 	vv = caml_swig_alloc(1,C_string);
+ 	SWIG_Store_field(vv,0,caml_alloc_string(len));
+-	memcpy(String_val(SWIG_Field(vv,0)),p,len);
++	memcpy((char*)(String_val(SWIG_Field(vv,0))),p,len);
+ 	CAMLreturn(vv);
+     }
+ 
