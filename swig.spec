@@ -9,19 +9,14 @@
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
-Version:	4.0.2
-Release:	3
+Version:	4.1.0
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Development/Other
 Url:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
-Patch0:		swig-3.0.0-pylib.patch
-# FIXME this is a fairly nasty workaround
-# for changes in ocaml 4.14...
-# But for now it works
-Patch1:		swig-4.0.2-ocaml-4.14.patch
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
