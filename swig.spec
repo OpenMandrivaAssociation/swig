@@ -20,6 +20,7 @@ Source1000:	%{name}.rpmlintrc
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
+BuildRequires:	pkgconfig(libpcre2-posix)
 %if %{with mono}
 BuildRequires:	mono
 BuildRequires:	pkgconfig(mono)
