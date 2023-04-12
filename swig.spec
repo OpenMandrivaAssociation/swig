@@ -17,6 +17,7 @@ Group:		Development/Other
 Url:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
+Patch0:		swig-4.1.1-ocaml-5.0.patch
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
