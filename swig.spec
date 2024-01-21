@@ -10,7 +10,7 @@
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
 Version:	4.2.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	BSD
 Group:		Development/Other
@@ -18,6 +18,8 @@ Url:		http://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
 Patch0:		swig-4.1.1-ocaml-5.0.patch
+# https://github.com/swig/swig/issues/2744
+Patch1:		https://github.com/swig/swig/commit/95140fa417a4350e2a0ff51c6933667199949442.patch
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
