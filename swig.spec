@@ -14,7 +14,7 @@ Release:	1
 Epoch:		1
 License:	BSD
 Group:		Development/Other
-Url:		http://www.swig.org/
+Url:		https://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
 BuildRequires:	bison
