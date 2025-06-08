@@ -9,8 +9,8 @@
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
-Version:	4.3.0
-Release:	2
+Version:	4.3.1
+Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		https://www.swig.org/
@@ -56,7 +56,6 @@ BuildRequires:	pkgconfig(python)
 Obsoletes:	swig-devel < 2.0.7
 
 %patchlist
-https://src.fedoraproject.org/rpms/swig/raw/rawhide/f/swig-4.3.0-Fix-precedence-of-casts.patch
 
 %description
 SWIG takes an interface description file written in a combination of C/C++
