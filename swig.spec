@@ -16,6 +16,10 @@ Group:		Development/Other
 Url:		https://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1000:	%{name}.rpmlintrc
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	bison
 BuildRequires:	imake
 BuildRequires:	libtool
