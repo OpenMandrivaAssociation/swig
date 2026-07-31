@@ -9,7 +9,7 @@
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
-Version:	4.4.0
+Version:	4.4.1
 Release:	1
 License:	BSD
 Group:		Development/Other
