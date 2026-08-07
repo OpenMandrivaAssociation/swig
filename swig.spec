@@ -10,12 +10,11 @@
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
 Version:	4.5.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Other
 Url:		https://www.swig.org/
 Source0:	http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Source1000:	%{name}.rpmlintrc
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
