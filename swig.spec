@@ -9,7 +9,7 @@
 
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
-Version:	4.4.1
+Version:	4.5.0
 Release:	1
 License:	BSD
 Group:		Development/Other
@@ -52,7 +52,6 @@ BuildRequires:	pkgconfig(guile-2.2)
 BuildRequires:	jre-current
 BuildRequires:	jdk-current
 %endif
-BuildRequires:	pkgconfig(libpcre)
 %if %{with lua}
 BuildRequires:	pkgconfig(lua)
 %endif
@@ -103,9 +102,7 @@ documentation.
 %configure \
 	--with-boost \
 	--with-tcl=%{_bindir}/tcl \
-	--with-python=%{_bindir}/python2 \
-	--with-2to3=%{_bindir}/2to3 \
-	--with-python3=%{_bindir}/python \
+	--with-python=%{_bindir}/python \
 	--with-perl5=%{_bindir}/perl \
 %if %{with java}
 	--with-java=$JAVA_HOME/bin/java \
