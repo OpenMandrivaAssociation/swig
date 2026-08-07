@@ -1,5 +1,10 @@
 %bcond_without guile
+# mono is not packaged on aarch64
+%ifarch aarch64
+%bcond_with mono
+%else
 %bcond_without mono
+%endif
 %bcond_without ocaml
 %bcond_without php
 %bcond_without ruby
@@ -10,7 +15,7 @@
 Summary:	Simplified Wrapper and Interface Generator (SWIG)
 Name:		swig
 Version:	4.5.0
-Release:	2
+Release:	3
 License:	BSD
 Group:		Development/Other
 Url:		https://www.swig.org/
